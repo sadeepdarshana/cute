@@ -17,6 +17,7 @@ vs = ['devenv.exe']
 explorer = ['explorer.exe']
 notepadpp = ['notepad++.exe']
 cmd = ['cmd.exe']
+taskmgr = ['Taskmgr.exe']
 vlc = ['vlc.exe']
 
 def app():
@@ -117,6 +118,19 @@ def ctrl_dev():
     controller.release('/')
     controller.release(Key.ctrl)
 
+def f14():
+    controller.press(Key.f14)
+    controller.release(Key.f14)
+def f13():
+    controller.press(Key.f13)
+    controller.release(Key.f13)
+def f15():
+    controller.press(Key.f15)
+    controller.release(Key.f15)
+def f16():
+    controller.press(Key.f16)
+    controller.release(Key.f16)
+
 def up_4():
     p = app()
     time.sleep(.01)
@@ -127,29 +141,32 @@ def down_4():
     p = app()
     time.sleep(.01)
     if p in jetbrains + chrome + notepadpp: ctrl_f4()
-    elif p in cmd: kill_current()
+    elif p in cmd + taskmgr: kill_current()
+    elif p in vs:f15()
     elif p in explorer or True:alt_f4()
     print(p,sys._getframe(0).f_code.co_name)
 def left_4():
     p = app()
     time.sleep(.01)
-    if p in jetbrains + chrome + notepadpp + vs: ctrl_pgdown()
+    if p in jetbrains + chrome + notepadpp: ctrl_pgdown()
     elif p in explorer:alt_right()
     elif p in vlc:right()
+    elif p in vs:f14()
     else:ctrl_tab()
     print(p,sys._getframe(0).f_code.co_name)
 def right_4():
     p = app()
     time.sleep(.01)
-    if p in jetbrains + chrome + notepadpp + vs: ctrl_pgup()
+    if p in jetbrains + chrome + notepadpp : ctrl_pgup()
     elif p in explorer:alt_left()
     elif p in vlc:left()
+    elif p in vs:f13()
     else:ctrl_shift_tab()
     print(p,sys._getframe(0).f_code.co_name)
 def tap_4():
     p = app()
     time.sleep(.01)
-    if p in chrome+jetbrains: middle_mouse()
+    if p in chrome+jetbrains+vs: middle_mouse()
     else: enter()
     print(p,sys._getframe(0).f_code.co_name)
 
@@ -161,10 +178,10 @@ def f6():threading.Thread(target=tap_4).start()
 
 
 with keyboard.GlobalHotKeys({
-        '<ctrl>+<shift>+<f1>': f1,
-        '<ctrl>+<shift>+<f2>': f2,
-        '<ctrl>+<shift>+<f3>': f3,
-        '<ctrl>+<shift>+<f5>': f5,
-        '<ctrl>+<shift>+<f6>': f6,
+        '<f6>': f1,
+        '<f7>': f2,
+        '<pause>': f3,
+        '<scroll_lock>': f5,
+        '<f8>': f6,
 }) as h:
     h.join()
