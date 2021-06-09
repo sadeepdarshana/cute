@@ -11,8 +11,8 @@ controller = Controller()
 mouse = Mouse()
 
 
-chrome = ['chrome.exe']
-jetbrains = ['pycharm64.exe','clion64.exe','webstorm64.exe','rider64.exe']
+chrome = ['chrome.exe','firefox.exe']
+jetbrains = ['pycharm64.exe','clion64.exe','webstorm64.exe','rider64.exe','pycharm.exe','clion.exe','webstorm.exe','rider.exe', 'studio.exe','studio64.exe', 'idea.exe', 'idea64.exe']
 vs = ['devenv.exe']
 explorer = ['explorer.exe']
 notepadpp = ['notepad++.exe']
@@ -105,7 +105,7 @@ def ctrl_f4():
     controller.press(Key.f4)
     controller.release(Key.f4)
     controller.release(Key.ctrl)
-    
+
 def ctrl_ast():
     controller.press(Key.ctrl)
     controller.press('*')
@@ -140,7 +140,7 @@ def up_4():
 def down_4():
     p = app()
     time.sleep(.01)
-    if p in jetbrains + chrome + notepadpp: ctrl_f4()
+    if p in jetbrains + chrome : ctrl_f4()
     elif p in cmd + taskmgr: kill_current()
     elif p in vs:f15()
     elif p in explorer or True:alt_f4()
@@ -164,24 +164,25 @@ def right_4():
     else:ctrl_shift_tab()
     print(p,sys._getframe(0).f_code.co_name)
 def tap_4():
+    print("tap_4")
     p = app()
     time.sleep(.01)
     if p in chrome+jetbrains+vs: middle_mouse()
     else: enter()
     print(p,sys._getframe(0).f_code.co_name)
 
-def f1():threading.Thread(target=up_4).start()
-def f2():threading.Thread(target=down_4).start()
-def f3():threading.Thread(target=left_4).start()
-def f5():threading.Thread(target=right_4).start()
-def f6():threading.Thread(target=tap_4).start()
+def f6():threading.Thread(target=up_4).start()
+def f7():threading.Thread(target=down_4).start()
+def pause():threading.Thread(target=left_4).start()
+def scroll():threading.Thread(target=right_4).start()
+def f8():threading.Thread(target=tap_4).start()
 
 
 with keyboard.GlobalHotKeys({
-        '<f6>': f1,
-        '<f7>': f2,
-        '<pause>': f3,
-        '<scroll_lock>': f5,
-        '<f8>': f6,
+        '<f6>': f6,
+        '<f7>': f7,
+        '<pause>': pause,
+        '<scroll_lock>': scroll,
+        '<f8>': f8,
 }) as h:
     h.join()
