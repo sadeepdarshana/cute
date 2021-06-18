@@ -12,10 +12,11 @@ mouse = Mouse()
 
 
 chrome = ['chrome.exe','firefox.exe']
+terminal = ['WindowsTerminal.exe']
 jetbrains = ['pycharm64.exe','clion64.exe','webstorm64.exe','rider64.exe','pycharm.exe','clion.exe','webstorm.exe','rider.exe', 'studio.exe','studio64.exe', 'idea.exe', 'idea64.exe']
 vs = ['devenv.exe']
 explorer = ['explorer.exe']
-notepadpp = ['notepad++.exe']
+notepadpp = ['notepad++.exe', 'notepad.exe']
 cmd = ['cmd.exe']
 taskmgr = ['Taskmgr.exe']
 vlc = ['vlc.exe']
@@ -133,22 +134,26 @@ def f16():
 
 def up_4():
     p = app()
+    print(p)
     time.sleep(.01)
-    if p in jetbrains + chrome: ctrl_t()
+    if p in terminal+jetbrains + chrome + notepadpp: ctrl_t()
     elif p in explorer: alt_up()
     print(p,sys._getframe(0).f_code.co_name)
 def down_4():
+    print("down_4")
     p = app()
+    print(p)
     time.sleep(.01)
-    if p in jetbrains + chrome : ctrl_f4()
+    if p in terminal+jetbrains + chrome : ctrl_f4()
     elif p in cmd + taskmgr: kill_current()
     elif p in vs:f15()
     elif p in explorer or True:alt_f4()
     print(p,sys._getframe(0).f_code.co_name)
 def left_4():
     p = app()
+    print(p)
     time.sleep(.01)
-    if p in jetbrains + chrome + notepadpp: ctrl_pgdown()
+    if p in terminal+jetbrains + chrome + notepadpp: ctrl_pgdown()
     elif p in explorer:alt_right()
     elif p in vlc:right()
     elif p in vs:f14()
@@ -156,8 +161,9 @@ def left_4():
     print(p,sys._getframe(0).f_code.co_name)
 def right_4():
     p = app()
+    print(p)
     time.sleep(.01)
-    if p in jetbrains + chrome + notepadpp : ctrl_pgup()
+    if p in terminal+jetbrains + chrome + notepadpp : ctrl_pgup()
     elif p in explorer:alt_left()
     elif p in vlc:left()
     elif p in vs:f13()
@@ -166,6 +172,7 @@ def right_4():
 def tap_4():
     print("tap_4")
     p = app()
+    print(p)
     time.sleep(.01)
     if p in chrome+jetbrains+vs: middle_mouse()
     else: enter()

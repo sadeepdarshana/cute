@@ -11,11 +11,17 @@ controller = Controller()
 mouse = Mouse()
 
 def ff():
-    controller.press(Key.f15)
-    controller.release(Key.f15)
+    controller.press(Key.f13)
+    controller.release(Key.f13)
 
+
+def alt_f14():
+    # controller.press(Key.)
+    controller.press(Key.f16)
+    controller.release(Key.f16)
+    # controller.release(Key.cmd)
 
 while (1):
     time.sleep(2)
     print ("press")
-    ff()
+    alt_f14()
