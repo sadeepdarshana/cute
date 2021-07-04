@@ -178,18 +178,18 @@ def tap_4():
     else: enter()
     print(p,sys._getframe(0).f_code.co_name)
 
-def f6():threading.Thread(target=up_4).start()
-def f7():threading.Thread(target=down_4).start()
-def pause():threading.Thread(target=left_4).start()
-def scroll():threading.Thread(target=right_4).start()
-def f8():threading.Thread(target=tap_4).start()
+def up_4_c():threading.Thread(target=up_4).start()
+def down_4_c():threading.Thread(target=down_4).start()
+def left_4_c():threading.Thread(target=left_4).start()
+def right_4_c():threading.Thread(target=right_4).start()
+def tap_4_c():threading.Thread(target=tap_4).start()
 
 
 with keyboard.GlobalHotKeys({
-        '<f6>': f6,
-        '<f7>': f7,
-        '<pause>': pause,
-        '<scroll_lock>': scroll,
-        '<f8>': f8,
+        '<f6>': up_4_c,
+        '<f3>': down_4_c,
+        '<pause>': left_4_c,
+        '<scroll_lock>': right_4_c,
+        # '<f8>': tap_4_c,
 }) as h:
     h.join()

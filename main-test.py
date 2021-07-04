@@ -17,8 +17,8 @@ def ff():
 
 def alt_f14():
     # controller.press(Key.)
-    controller.press(Key.f16)
-    controller.release(Key.f16)
+    controller.press(Key.f15)
+    controller.release(Key.f15)
     # controller.release(Key.cmd)
 
 while (1):
